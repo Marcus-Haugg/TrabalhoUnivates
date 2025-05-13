@@ -52,7 +52,6 @@ public class ControlaProduto {
     public void editar(Produto p) {
         System.out.println("###  ÁREA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A PRODUTOS  ###");
         p.setNome(Entrada.leiaString("Digite o novo nome do produto:"));
-        p.setDescricao(Entrada.leiaString("Digite a nova descrição do Produto:"));
         p.setPreco(Entrada.leiaDouble("Digite o novo preço do Produto:"));
         p.setQtdeEstoque(Entrada.leiaInt("Digite a nova quantidade do estoque:"));
 

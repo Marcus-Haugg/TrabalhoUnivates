@@ -9,10 +9,9 @@ package Entidades;
  * @author marcu
  */
 public class Produto {
-    
+
     private int id;
     private String nome;
-    private String descricao;
     private double preco;
     private int qtdeEstoque;
 
@@ -32,14 +31,6 @@ public class Produto {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public double getPreco() {
         return preco;
     }
@@ -55,14 +46,12 @@ public class Produto {
     public void setQtdeEstoque(int qtdeEstoque) {
         this.qtdeEstoque = qtdeEstoque;
     }
-    
-    public void imprmiAtributos(){
+
+    public void imprmiAtributos() {
         System.out.println("ID:" + id);
         System.out.println("Nome:" + nome);
-        System.out.println("Descrição:" + descricao);
         System.out.println("Preço:" + preco);
         System.out.println("Quantidade em Estoque:" + qtdeEstoque);
     }
-    
-    
+
 }

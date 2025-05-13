@@ -47,7 +47,6 @@ public class MercadoOO {
                     + "[13] Excluir Compra\n"
                     + "[14] Editar Compra\n"
                     + "[15] Recuperar Compra\n"
-                    + "[16] Editar Compra\n"
                     + "[99] Sair do Sistema\n"
             );
 
@@ -56,7 +55,6 @@ public class MercadoOO {
                 Produto p1 = new Produto();
 
                 p1.setNome(Entrada.leiaString("Digite o nome do produto que deseja cadastrar:"));
-                p1.setDescricao(Entrada.leiaString("Digite uma breve descrição do produto:"));
                 p1.setPreco(Entrada.leiaDouble("Digite o valor do produto:"));
                 p1.setQtdeEstoque(Entrada.leiaInt("Informe a quantidade do produto disponível no estoque:"));
 
@@ -108,11 +106,66 @@ public class MercadoOO {
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 clienteTemporario.imprimiAtributos();
 
-            } else if (opcao == 11) {
+            }
+//            if (opcao == 11) {
+//                // Instanciando o objeto 'Compra'
+//                Compras compra = new Compras();
+//
+//                // Recebendo os dados da compra
+//                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
+//                compra.setDataCompra(Entrada.leiaString("Data da compra: "));
+//
+//                // Perguntando quantos produtos serão comprados
+//                int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
+//
+//                // Criando um vetor para armazenar os nomes dos produtos
+//                String[] produtos = new String[quantidade];
+//                double valorTotal = 0.0;
+//                String descricao = "";
+//
+//                // Loop para adicionar os produtos e seus preços
+//                for (int i = 0; i < quantidade; i++) {
+//                    produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
+//                    double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
+//                    valorTotal += preco; // Somando o valor total
+//                    descricao += produtos[i] + " (R$ " + preco + ")\n";
+//                }
+//
+//                // Definindo os valores na compra
+//                compra.setDescricaoCompra(descricao);
+//                compra.setValorTotal(valorTotal);
+//
+//                // Simulando a função de salvar
+//                compras.salvar(compra);
+//
+//                System.out.println("Compra cadastrada com sucesso!");
+            if (opcao == 11) {
                 Compras compra = new Compras();
-                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento:"));
-                compra.setDataCompra(Entrada.leiaString("Data da compra:"));
-                compra.setDescricaoCompra(Entrada.leiaString("Descrição da compra:"));
+
+                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
+                compra.setDataCompra(Entrada.leiaString("Data da compra: "));
+
+                int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
+                String[] produtos = new String[quantidade];
+                int[] quantidades = new int[quantidade];
+                double[] precos = new double[quantidade];
+                double valorTotal = 0.0;
+                String descricao = "";
+
+                for (int i = 0; i < quantidade; i++) {
+                    produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
+                    quantidades[i] = Entrada.leiaInt("Quantidade de " + produtos[i] + ": ");
+                    precos[i] = Entrada.leiaDouble("Preço unitário de " + produtos[i] + ": ");
+
+                    valorTotal += precos[i] * quantidades[i];
+
+                    descricao += produtos[i] + " x" + quantidades[i]
+                            + " (R$ " + precos[i] + " cada)\n";
+                }
+
+                compra.setDescricaoCompra(descricao);
+                compra.setValorTotal(valorTotal);
+
                 compras.salvar(compra);
                 System.out.println("Compra cadastrada com sucesso!");
 
