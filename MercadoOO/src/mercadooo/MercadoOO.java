@@ -9,6 +9,7 @@ import Controladores.ControlaCompras;
 import Controladores.ControlaProduto;
 import Entidades.Cliente;
 import Entidades.Produto;
+import Entidades.Compras;
 import Apoio.Entrada;
 
 /**
@@ -106,6 +107,46 @@ public class MercadoOO {
                 System.out.println("IMRIMINDO CLIENTE RECUPERADO...");
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 clienteTemporario.imprimiAtributos();
+
+            } else if (opcao == 11) {
+                Compras compra = new Compras();
+                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento:"));
+                compra.setDataCompra(Entrada.leiaString("Data da compra:"));
+                compra.setDescricaoCompra(Entrada.leiaString("Descrição da compra:"));
+                compras.salvar(compra);
+                System.out.println("Compra cadastrada com sucesso!");
+
+            } else if (opcao == 12) {
+                compras.recuperaTodos();
+
+            } else if (opcao == 13) {
+                int id = Entrada.leiaInt("Digite o ID da compra que deseja excluir:");
+                Compras compraTemp = compras.recuperarUm(id);
+                if (compraTemp != null) {
+                    compras.excluir(compraTemp);
+                    System.out.println("Compra excluída com sucesso!");
+                } else {
+                    System.out.println("Compra não encontrada.");
+                }
+
+            } else if (opcao == 14) {
+                int id = Entrada.leiaInt("Digite o ID da compra que deseja editar:");
+                Compras compraTemp = compras.recuperarUm(id);
+                if (compraTemp != null) {
+                    compras.editar(compraTemp);
+                } else {
+                    System.out.println("Compra não encontrada.");
+                }
+
+            } else if (opcao == 15) {
+                int id = Entrada.leiaInt("Digite o ID da compra que deseja recuperar:");
+                Compras compraTemp = compras.recuperarUm(id);
+                if (compraTemp != null) {
+                    System.out.println("### COMPRA RECUPERADA ###");
+                    compraTemp.imprimiAtributos();
+                } else {
+                    System.out.println("Compra não encontrada.");
+                }
             }
 
         }
