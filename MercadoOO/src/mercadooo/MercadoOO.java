@@ -4,12 +4,12 @@
  */
 package mercadooo;
 
-import Controller.ControllerCliente;
-import Controller.ControllerCompras;
-import Controller.ControllerProduto;
-import Model.Cliente;
-import Model.Produto;
-import a2_poo.Entrada;
+import Controladores.ControlaCliente;
+import Controladores.ControlaCompras;
+import Controladores.ControlaProduto;
+import Entidades.Cliente;
+import Entidades.Produto;
+import Apoio.Entrada;
 
 /**
  *
@@ -22,9 +22,9 @@ public class MercadoOO {
      */
     public static void main(String[] args) {
 
-        ControllerCliente cliente = new ControllerCliente();
-        ControllerProduto produto = new ControllerProduto();
-        ControllerCompras compras = new ControllerCompras();
+        ControlaCliente cliente = new ControlaCliente();
+        ControlaProduto produto = new ControlaProduto();
+        ControlaCompras compras = new ControlaCompras();
 
         int opcao = 0;
 

@@ -1,4 +1,4 @@
-package a2_poo;
+package Apoio;
 
 import javax.swing.*;
 
