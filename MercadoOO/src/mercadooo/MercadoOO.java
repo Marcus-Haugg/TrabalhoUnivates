@@ -109,7 +109,7 @@ public class MercadoOO {
             }
 
         }
-
+        System.exit(0);
     }
 
 }
