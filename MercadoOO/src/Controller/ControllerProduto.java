@@ -50,7 +50,7 @@ public class ControllerProduto {
     }
 
     public void editar(Produto p) {
-        System.out.println("###  ARÉA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A PRODUTOS  ###");
+        System.out.println("###  ÁREA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A PRODUTOS  ###");
         p.setNome(Entrada.leiaString("Digite o novo nome do produto:"));
         p.setDescricao(Entrada.leiaString("Digite a nova descrição do Produto:"));
         p.setPreco(Entrada.leiaDouble("Digite o novo preço do Produto:"));

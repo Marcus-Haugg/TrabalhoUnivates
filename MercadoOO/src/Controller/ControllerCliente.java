@@ -52,7 +52,7 @@ public class ControllerCliente {
     public void editar(Cliente c) {
         System.out.println("###  ARÉA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A CLIENTE  ###");
         c.setNome(Entrada.leiaString("Digite o novo nome do Cliente:"));
-        c.setCpf(Entrada.leiaString("Digite a novo CPF:"));
+        c.setCpf(Entrada.leiaString("Digite o novo CPF:"));
         c.setEmail(Entrada.leiaString("Digite o novo endereço de email:"));
         c.setTelefone(Entrada.leiaString("Digite a novo número de telefone:"));
 
