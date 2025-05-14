@@ -7,8 +7,12 @@ package Controladores;
 import Entidades.Compras;
 import java.util.ArrayList;
 import Apoio.Entrada;
+import Entidades.Cliente;
+import Controladores.ControlaCliente;
 
 public class ControlaCompras {
+
+    ControlaCliente controlaCliente = new ControlaCliente();
 
     ArrayList<Compras> compras = new ArrayList();
     int codigo = 1;
@@ -19,10 +23,52 @@ public class ControlaCompras {
         codigo++;
     }
 
+// public void recuperaTodos() {
+//    if (compras.isEmpty()) {
+//        System.out.println("Nenhuma compra cadastrada.");
+//        return;
+//    }
+//
+//    System.out.println("=== Lista de Compras ===");
+//
+//    for (int i = 0; i < compras.size(); i++) {
+//        Compras c = compras.get(i);
+//        System.out.println("ID: " + c.getId());
+//        System.out.println("Data da Compra: " + c.getDataCompra());
+//        System.out.println("Forma de Pagamento: " + c.getFormaPagamento());
+//        System.out.println("Descrição da Compra:");
+//        System.out.println(c.getDescricaoCompra());
+//        System.out.println("Valor Total: R$ " + c.getValorTotal());
+//
+//        if (c.getCliente() != null) {
+//            System.out.println("Cliente: " + c.getCliente().getNome());
+//            System.out.println("CPF do Cliente: " + c.getCliente().getCpf());
+//        } else {
+//            System.out.println("Cliente: [Nenhum cliente vinculado]");
+//        }
+//
+//        System.out.println("-------------------------------");
+//    }
+//}
     public void recuperaTodos() {
-        System.out.println("#### LISTA DE COMPRAS ####");
+        if (compras.isEmpty()) {
+            System.out.println("Nenhuma compra cadastrada.");
+            return;
+        }
+
+        System.out.println("Lista de Compras:");
         for (int i = 0; i < compras.size(); i++) {
-            compras.get(i).imprimiAtributos();
+            Compras c = compras.get(i);
+
+            System.out.println("-------------------------------");
+            System.out.println("ID da Compra: " + c.getId());
+            System.out.println("Cliente: " + (c.getCliente() != null ? c.getCliente().getNome() : "Não informado"));
+            System.out.println("Data da Compra: " + c.getDataCompra());
+            System.out.println("Forma de Pagamento: " + c.getFormaPagamento());
+            System.out.println("Produtos:");
+            System.out.println(c.getDescricaoCompra());
+            System.out.printf("Valor Total: R$ %.2f%n", c.getValorTotal());
+            System.out.println("-------------------------------\n");
         }
     }
 
@@ -40,67 +86,46 @@ public class ControlaCompras {
         compras.remove(c);
     }
 
-    public void editar(Compras c) {
-        System.out.println("### EDIÇÃO DE COMPRA ###");
+    public void editar(Compras compra) {
+        String novaFormaPgto = Entrada.leiaString("Forma de pagamento atual: " + compra.getFormaPagamento() + "\nNova forma de pagamento: ");
+        String novaData = Entrada.leiaString("Data atual: " + compra.getDataCompra() + "\nNova data da compra: ");
 
-        // Editando forma de pagamento e data da compra
-        c.setFormaPagamento(Entrada.leiaString("Nova forma de pagamento: "));
-        c.setDataCompra(Entrada.leiaString("Nova data da compra: "));
-
-        // Pergunta quantos produtos deseja adicionar
-        int quantidade = Entrada.leiaInt("Quantos produtos?");
-
-        // Vetores auxiliares
-        String[] produtos = new String[quantidade];
-        int[] quantidades = new int[quantidade];
-        double[] precos = new double[quantidade];
-        double valorTotal = 0.0;
-        String descricao = "";
-
-        // Loop para inserir dados de cada produto
-        for (int i = 0; i < quantidade; i++) {
-            produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
-            quantidades[i] = Entrada.leiaInt("Quantidade de " + produtos[i] + ": ");
-            precos[i] = Entrada.leiaDouble("Preço unitário de " + produtos[i] + ": ");
-
-            valorTotal += quantidades[i] * precos[i];
-            descricao += produtos[i] + " x" + quantidades[i] + " (R$ " + precos[i] + " cada)\n";
+        int novoIdCliente = Entrada.leiaInt("ID atual do cliente: " + compra.getCliente().getId() + "\nNovo ID do cliente: ");
+        Cliente novoCliente = controlaCliente.recuperarUm(novoIdCliente);
+        if (novoCliente == null) {
+            System.out.println("Cliente não encontrado. Cliente não será alterado.");
+        } else {
+            compra.setCliente(novoCliente);
         }
 
-        // Atualiza os dados da compra
-        c.setDescricaoCompra(descricao);
-        c.setValorTotal(valorTotal);
+        compra.setFormaPagamento(novaFormaPgto);
+        compra.setDataCompra(novaData);
 
-        System.out.println("Compra editada com sucesso!");
+        System.out.println("Informações da compra atualizadas (produtos não foram alterados).");
     }
 
 //    public void editar(Compras c) {
-//    System.out.println("### EDIÇÃO DE COMPRA ###");
-//    
-//    // Editando forma de pagamento e data da compra
-//    c.setFormaPagamento(Entrada.leiaString("Nova forma de pagamento: "));
-//    c.setDataCompra(Entrada.leiaString("Nova data da compra: "));
-//    
-//    // Perguntando se o usuário quer alterar a descrição e os produtos
-//    int quantidade = Entrada.leiaInt("Quantos produtos?");
-//    
-//    // Criando um novo vetor para armazenar os nomes dos produtos
-//    String[] produtos = new String[quantidade];
-//    double valorTotal = 0.0;
-//    String descricao = "";
-//    
-//    // Loop para editar os produtos e seus preços
-//    for (int i = 0; i < quantidade; i++) {
-//        produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
-//        double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
-//        valorTotal += preco; // Somando o valor total
-//        descricao += produtos[i] + " (R$ " + preco + ")\n"; // Concatenando a descrição
+//        c.setFormaPagamento(Entrada.leiaString("Nova forma de pagamento: "));
+//        c.setDataCompra(Entrada.leiaString("Nova data da compra: "));
+//
+//        // Editar os produtos manualmente
+//        String descricao = "";
+//        double valorTotal = 0.0;
+//
+//        int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?:");
+//
+//        for (int i = 0; i < quantidade; i++) {
+//            String nomeProduto = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
+//            double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
+//
+//            descricao += nomeProduto + " (R$ " + preco + ")\n";
+//            valorTotal += preco;
+//        }
+//
+//        c.setDescricaoCompra(descricao);
+//        c.setValorTotal(valorTotal);
+//
+//        System.out.println("Compra atualizada com sucesso!");
 //    }
 //
-//    // Atualizando os dados da compra
-//    c.setDescricaoCompra(descricao);
-//    c.setValorTotal(valorTotal);
-//
-//    System.out.println("Compra editada com sucesso!");
-//}
 }

@@ -15,6 +15,7 @@ public class Compras {
     private double valorTotal;
     private String dataCompra;
     private String descricaoCompra;
+    private Cliente cliente;
 
     public int getId() {
         return id;
@@ -22,6 +23,14 @@ public class Compras {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getFormaPagamento() {
@@ -62,6 +71,9 @@ public class Compras {
         System.out.println("Valor total da compra:" + valorTotal);
         System.out.println("Data da compra:" + dataCompra);
         System.out.println("Descrição da compra:" + descricaoCompra);
+        if (cliente != null) {
+        System.out.println("Cliente: " + cliente.getNome() + " (ID: " + cliente.getId() + ")");
+    }
     }
     
 }

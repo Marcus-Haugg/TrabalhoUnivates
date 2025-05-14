@@ -106,67 +106,80 @@ public class MercadoOO {
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 clienteTemporario.imprimiAtributos();
 
-            }
 //            if (opcao == 11) {
-//                // Instanciando o objeto 'Compra'
 //                Compras compra = new Compras();
 //
-//                // Recebendo os dados da compra
+//                // 1. Buscar cliente por ID
+//                int idCliente = Entrada.leiaInt("Digite o ID do cliente que está realizando a compra:");
+//                Cliente clienteTemp = cliente.recuperarUm(idCliente);
+//
+//                if (clienteTemp == null) {
+//                    System.out.println("Cliente não encontrado. Compra cancelada.");
+//                    continue;
+//                }
+//
+//                // 2. Dados da compra
 //                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
 //                compra.setDataCompra(Entrada.leiaString("Data da compra: "));
+//                compra.setCliente(clienteTemp); // Associar o cliente
 //
-//                // Perguntando quantos produtos serão comprados
+//                // 3. Produtos da compra (adicionados manualmente)
 //                int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
-//
-//                // Criando um vetor para armazenar os nomes dos produtos
 //                String[] produtos = new String[quantidade];
 //                double valorTotal = 0.0;
 //                String descricao = "";
 //
-//                // Loop para adicionar os produtos e seus preços
 //                for (int i = 0; i < quantidade; i++) {
 //                    produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
 //                    double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
-//                    valorTotal += preco; // Somando o valor total
+//                    valorTotal += preco;
 //                    descricao += produtos[i] + " (R$ " + preco + ")\n";
 //                }
 //
-//                // Definindo os valores na compra
 //                compra.setDescricaoCompra(descricao);
 //                compra.setValorTotal(valorTotal);
 //
-//                // Simulando a função de salvar
 //                compras.salvar(compra);
-//
 //                System.out.println("Compra cadastrada com sucesso!");
-            if (opcao == 11) {
+            } else if (opcao == 11) {
                 Compras compra = new Compras();
 
                 compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
                 compra.setDataCompra(Entrada.leiaString("Data da compra: "));
 
+                int idCliente = Entrada.leiaInt("ID do cliente da compra: ");
+                Cliente clienteTemp = cliente.recuperarUm(idCliente);
+                if (clienteTemp == null) {
+                    System.out.println("Cliente não encontrado. Compra cancelada.");
+                    continue;
+                }
+                compra.setCliente(clienteTemp);
+
                 int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
-                String[] produtos = new String[quantidade];
-                int[] quantidades = new int[quantidade];
-                double[] precos = new double[quantidade];
-                double valorTotal = 0.0;
                 String descricao = "";
+                double valorTotal = 0.0;
 
                 for (int i = 0; i < quantidade; i++) {
-                    produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
-                    quantidades[i] = Entrada.leiaInt("Quantidade de " + produtos[i] + ": ");
-                    precos[i] = Entrada.leiaDouble("Preço unitário de " + produtos[i] + ": ");
+                    int idProduto = Entrada.leiaInt("ID do produto " + (i + 1) + ": ");
+                    Produto produtoTemp = produto.recuperarUm(idProduto);
+                    if (produtoTemp == null) {
+                        System.out.println("Produto com ID " + idProduto + " não encontrado.");
+                        i--; // Tenta de novo esse item
+                        continue;
+                    }
 
-                    valorTotal += precos[i] * quantidades[i];
+                    int qtde = Entrada.leiaInt("Quantidade de " + produtoTemp.getNome() + ": ");
+                    double valorItem = produtoTemp.getPreco() * qtde;
 
-                    descricao += produtos[i] + " x" + quantidades[i]
-                            + " (R$ " + precos[i] + " cada)\n";
+                    descricao += produtoTemp.getNome() + " x" + qtde
+                            + " (R$ " + produtoTemp.getPreco() + " cada)\n";
+                    valorTotal += valorItem;
                 }
 
                 compra.setDescricaoCompra(descricao);
                 compra.setValorTotal(valorTotal);
-
                 compras.salvar(compra);
+
                 System.out.println("Compra cadastrada com sucesso!");
 
             } else if (opcao == 12) {
@@ -182,11 +195,30 @@ public class MercadoOO {
                     System.out.println("Compra não encontrada.");
                 }
 
+//            } else if (opcao == 14) {
+//                int id = Entrada.leiaInt("Digite o ID da compra que deseja editar:");
+//                Compras compraTemp = compras.recuperarUm(id);
+//                if (compraTemp != null) {
+//                    compras.editar(compraTemp);
+//                } else {
+//                    System.out.println("Compra não encontrada.");
+//                }
             } else if (opcao == 14) {
                 int id = Entrada.leiaInt("Digite o ID da compra que deseja editar:");
                 Compras compraTemp = compras.recuperarUm(id);
+
                 if (compraTemp != null) {
-                    compras.editar(compraTemp);
+                    Cliente clienteTemp = null;
+                    int idCliente = Entrada.leiaInt("Digite o ID do cliente associado à compra:");
+                    clienteTemp = cliente.recuperarUm(idCliente);
+
+                    if (clienteTemp != null) {
+                        compraTemp.setCliente(clienteTemp);
+                        compras.editar(compraTemp);
+                    } else {
+                        System.out.println("Cliente não encontrado.");
+                    }
+
                 } else {
                     System.out.println("Compra não encontrada.");
                 }
@@ -203,7 +235,9 @@ public class MercadoOO {
             }
 
         }
-        System.exit(0);
+
+        System.exit(
+                0);
     }
 
 }
