@@ -23,33 +23,6 @@ public class ControlaCompras {
         codigo++;
     }
 
-// public void recuperaTodos() {
-//    if (compras.isEmpty()) {
-//        System.out.println("Nenhuma compra cadastrada.");
-//        return;
-//    }
-//
-//    System.out.println("=== Lista de Compras ===");
-//
-//    for (int i = 0; i < compras.size(); i++) {
-//        Compras c = compras.get(i);
-//        System.out.println("ID: " + c.getId());
-//        System.out.println("Data da Compra: " + c.getDataCompra());
-//        System.out.println("Forma de Pagamento: " + c.getFormaPagamento());
-//        System.out.println("Descrição da Compra:");
-//        System.out.println(c.getDescricaoCompra());
-//        System.out.println("Valor Total: R$ " + c.getValorTotal());
-//
-//        if (c.getCliente() != null) {
-//            System.out.println("Cliente: " + c.getCliente().getNome());
-//            System.out.println("CPF do Cliente: " + c.getCliente().getCpf());
-//        } else {
-//            System.out.println("Cliente: [Nenhum cliente vinculado]");
-//        }
-//
-//        System.out.println("-------------------------------");
-//    }
-//}
     public void recuperaTodos() {
         if (compras.isEmpty()) {
             System.out.println("Nenhuma compra cadastrada.");
@@ -104,28 +77,5 @@ public class ControlaCompras {
         System.out.println("Informações da compra atualizadas (produtos não foram alterados).");
     }
 
-//    public void editar(Compras c) {
-//        c.setFormaPagamento(Entrada.leiaString("Nova forma de pagamento: "));
-//        c.setDataCompra(Entrada.leiaString("Nova data da compra: "));
-//
-//        // Editar os produtos manualmente
-//        String descricao = "";
-//        double valorTotal = 0.0;
-//
-//        int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?:");
-//
-//        for (int i = 0; i < quantidade; i++) {
-//            String nomeProduto = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
-//            double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
-//
-//            descricao += nomeProduto + " (R$ " + preco + ")\n";
-//            valorTotal += preco;
-//        }
-//
-//        c.setDescricaoCompra(descricao);
-//        c.setValorTotal(valorTotal);
-//
-//        System.out.println("Compra atualizada com sucesso!");
-//    }
-//
+
 }
