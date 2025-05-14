@@ -185,7 +185,7 @@ public class MercadoOO {
                 Compras compraTemp = compras.recuperarUm(id);
                 if (compraTemp != null) {
                     System.out.println("### COMPRA RECUPERADA ###");
-                    compraTemp.imprimiAtributos();
+                    compraTemp.imprimirAtributos();
                 } else {
                     System.out.println("Compra não encontrada.");
                 }
