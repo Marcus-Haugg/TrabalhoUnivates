@@ -106,41 +106,6 @@ public class MercadoOO {
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 clienteTemporario.imprimiAtributos();
 
-//            if (opcao == 11) {
-//                Compras compra = new Compras();
-//
-//                // 1. Buscar cliente por ID
-//                int idCliente = Entrada.leiaInt("Digite o ID do cliente que está realizando a compra:");
-//                Cliente clienteTemp = cliente.recuperarUm(idCliente);
-//
-//                if (clienteTemp == null) {
-//                    System.out.println("Cliente não encontrado. Compra cancelada.");
-//                    continue;
-//                }
-//
-//                // 2. Dados da compra
-//                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
-//                compra.setDataCompra(Entrada.leiaString("Data da compra: "));
-//                compra.setCliente(clienteTemp); // Associar o cliente
-//
-//                // 3. Produtos da compra (adicionados manualmente)
-//                int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
-//                String[] produtos = new String[quantidade];
-//                double valorTotal = 0.0;
-//                String descricao = "";
-//
-//                for (int i = 0; i < quantidade; i++) {
-//                    produtos[i] = Entrada.leiaString("Nome do produto " + (i + 1) + ": ");
-//                    double preco = Entrada.leiaDouble("Preço do produto " + (i + 1) + ": ");
-//                    valorTotal += preco;
-//                    descricao += produtos[i] + " (R$ " + preco + ")\n";
-//                }
-//
-//                compra.setDescricaoCompra(descricao);
-//                compra.setValorTotal(valorTotal);
-//
-//                compras.salvar(compra);
-//                System.out.println("Compra cadastrada com sucesso!");
             } else if (opcao == 11) {
                 Compras compra = new Compras();
 
@@ -195,14 +160,6 @@ public class MercadoOO {
                     System.out.println("Compra não encontrada.");
                 }
 
-//            } else if (opcao == 14) {
-//                int id = Entrada.leiaInt("Digite o ID da compra que deseja editar:");
-//                Compras compraTemp = compras.recuperarUm(id);
-//                if (compraTemp != null) {
-//                    compras.editar(compraTemp);
-//                } else {
-//                    System.out.println("Compra não encontrada.");
-//                }
             } else if (opcao == 14) {
                 int id = Entrada.leiaInt("Digite o ID da compra que deseja editar:");
                 Compras compraTemp = compras.recuperarUm(id);
@@ -228,7 +185,7 @@ public class MercadoOO {
                 Compras compraTemp = compras.recuperarUm(id);
                 if (compraTemp != null) {
                     System.out.println("### COMPRA RECUPERADA ###");
-                    compraTemp.imprimiAtributos();
+                    compraTemp.imprimirAtributos();
                 } else {
                     System.out.println("Compra não encontrada.");
                 }
