@@ -60,7 +60,7 @@ public class Cliente {
         System.out.println("ID:" + id);
         System.out.println("Nome:" + nome);
         System.out.println("CPF:" + cpf);
-        System.out.println("Emial do clinete:" + email);
+        System.out.println("Emial do cliente:" + email);
         System.out.println("Telefone do cliente:" + telefone);
     }
     

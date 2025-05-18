@@ -67,7 +67,7 @@ public class Compras {
     
     public void imprimirAtributos(){
         System.out.println("ID: " + id);
-        System.out.println("Froma de Pagamento: " + formaPagamento);
+        System.out.println("Forma de Pagamento: " + formaPagamento);
         System.out.println("Valor total da compra: " + valorTotal);
         System.out.println("Data da compra: " + dataCompra);
         System.out.println("Descrição da compra: \n" + descricaoCompra);
