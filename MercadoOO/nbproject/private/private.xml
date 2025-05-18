@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Christian/Documents/Matheus/Git/TrabalhoUnivates/MercadoOO/src/mercadooo/MercadoOO.java</file>
             <file>file:/C:/Users/Christian/Documents/Matheus/Git/TrabalhoUnivates/MercadoOO/src/Controladores/ControlaCompras.java</file>
             <file>file:/C:/Users/Christian/Documents/Matheus/Git/TrabalhoUnivates/MercadoOO/src/Entidades/Compras.java</file>
             <file>file:/C:/Users/Christian/Documents/Matheus/Git/TrabalhoUnivates/MercadoOO/src/Controladores/ControlaCliente.java</file>
+=======
+            <file>file:/D:/Git/TrabalhoUnivates/MercadoOO/src/mercadooo/MercadoOO.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>
