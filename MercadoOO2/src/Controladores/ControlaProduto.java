@@ -17,6 +17,7 @@ public class ControlaProduto {
     ArrayList<Produto> produtos = new ArrayList();
     int codigo = 1;
 
+//Salvar
     public void salvar(Produto p) {
         p.setId(codigo);
         produtos.add(p);
@@ -24,6 +25,7 @@ public class ControlaProduto {
 
     }
 
+//Recuperar todos
     public void recuperaTodos() {
         System.out.println("#### IMPRIMINDO PRODUTOS ####");
         for (int i = 0; i < produtos.size(); i++) {
@@ -33,10 +35,12 @@ public class ControlaProduto {
         }
     }
 
+//Excluir
     public void excluir(Produto p) {
         produtos.remove(p);
     }
 
+//Recuperar um
     public Produto recuperarUm(int id) {
         for (int i = 0; i < produtos.size(); i++) {
             Produto protudoTemporario = produtos.get(i);
@@ -49,6 +53,7 @@ public class ControlaProduto {
 
     }
 
+//Editar
     public void editar(Produto p) {
         System.out.println("###  ÁREA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A PRODUTOS  ###");
         p.setNome(Entrada.leiaString("Digite o novo nome do produto:"));

@@ -17,6 +17,7 @@ public class ControlaCliente {
     ArrayList<Cliente> clientes = new ArrayList();
     int codigo = 1;
 
+//Salvar
     public void salvar(Cliente c) {
         c.setId(codigo);
         clientes.add(c);
@@ -24,6 +25,7 @@ public class ControlaCliente {
 
     }
 
+//Recuperar todos
     public void recuperaTodos() {
         System.out.println("#### IMPRIMINDO CLIENTES ####");
         for (int i = 0; i < clientes.size(); i++) {
@@ -33,6 +35,7 @@ public class ControlaCliente {
         }
     }
 
+//Recuperar um
     public Cliente recuperarUm(int id) {
         for (int i = 0; i < clientes.size(); i++) {
             Cliente clienteTemporario = clientes.get(i);
@@ -45,10 +48,12 @@ public class ControlaCliente {
 
     }
 
+//Excluir
     public void excluir(Cliente c) {
         clientes.remove(c);
     }
 
+//Editar
     public void editar(Cliente c) {
         System.out.println("###  ARÉA DE EDIÇÃO DE INFORMAÇÕES REFERENTE A CLIENTE  ###");
         c.setNome(Entrada.leiaString("Digite o novo nome do Cliente:"));

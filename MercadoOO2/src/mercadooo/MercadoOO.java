@@ -12,15 +12,8 @@ import Entidades.Produto;
 import Entidades.Compras;
 import Apoio.Entrada;
 
-/**
- *
- * @author marcu
- */
 public class MercadoOO {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         ControlaCliente cliente = new ControlaCliente();
@@ -31,54 +24,57 @@ public class MercadoOO {
 
         while (opcao != 99) {
 
-            opcao = Entrada.leiaInt(""
-                    + "[1] Cadastrar Produto\n"
-                    + "[2] Listar Produtos\n"
-                    + "[3] Excluir Produto\n"
-                    + "[4] Editar Produto\n"
-                    + "[5] Recuperar um Produto\n"
-                    + "[6] Cadastrar Cliente\n"
-                    + "[7] Listar Clientes\n"
-                    + "[8] Excluir Cliente\n"
-                    + "[9] Editar Cliente\n"
-                    + "[10] Recuperar Cliente\n"
-                    + "[11] Cadastrar Compras\n"
-                    + "[12] Listar Compras \n"
-                    + "[13] Excluir Compra\n"
-                    + "[14] Editar Compra\n"
-                    + "[15] Recuperar Compra\n"
-                    + "[99] Sair do Sistema\n"
-            );
+            opcao = Entrada.leiaInt("""
+                    [1] Cadastrar Produto
+                    [2] Listar Produtos
+                    [3] Excluir Produto
+                    [4] Editar Produto
+                    [5] Recuperar um Produto
+                    [6] Cadastrar Cliente
+                    [7] Listar Clientes
+                    [8] Excluir Cliente
+                    [9] Editar Cliente
+                    [10] Recuperar Cliente
+                    [11] Cadastrar Compras
+                    [12] Listar Compras 
+                    [13] Excluir Compra
+                    [14] Editar Compra
+                    [15] Recuperar Compra
+                    [99] Sair do Sistema
+                    """);
 
+//Opção 1 (Cadastrar produto)
             if (opcao == 1) {
-
                 Produto p1 = new Produto();
-
                 p1.setNome(Entrada.leiaString("Digite o nome do produto que deseja cadastrar: "));
                 p1.setPreco(Entrada.leiaDouble("Digite o valor do produto: "));
                 p1.setQtdeEstoque(Entrada.leiaInt("Informe a quantidade do produto disponível no estoque: "));
-
                 produto.salvar(p1);
 
+//Opção 2 (Listrar produtos)              
             } else if (opcao == 2) {
                 produto.recuperaTodos();
 
+//Opção 3 (Excluir produto)           
             } else if (opcao == 3) {
                 int id = Entrada.leiaInt("Digite o ID do produto que deseja excluir: ");
-                Produto protudoTemporario = produto.recuperarUm(id);
-                produto.excluir(protudoTemporario);
+                Produto produtoTemporario = produto.recuperarUm(id);
+                produto.excluir(produtoTemporario);
 
+//Opção 4 (Editar produto)               
             } else if (opcao == 4) {
                 int id = Entrada.leiaInt("Digite o ID do produto que deseja editar: ");
-                Produto protudoTemporario = produto.recuperarUm(id);
-                produto.editar(protudoTemporario);
+                Produto produtoTemporario = produto.recuperarUm(id);
+                produto.editar(produtoTemporario);
 
+//Opção 5 (Recuperar um produto)                
             } else if (opcao == 5) {
                 int id = Entrada.leiaInt("Digite o ID do produto que deseja recuperar: ");
                 System.out.println("IMPRIMINDO PRODUTO Recuperado...");
-                Produto protudoTemporario = produto.recuperarUm(id);
-                protudoTemporario.imprimirAtributos();
+                Produto produtoTemporario = produto.recuperarUm(id);
+                produtoTemporario.imprimirAtributos();
 
+//Opção 6 (Cadastrar cliente)
             } else if (opcao == 6) {
                 Cliente c = new Cliente();
                 c.setNome(Entrada.leiaString("Digite o nome do cliente que deseja cadastrar: "));
@@ -87,38 +83,43 @@ public class MercadoOO {
                 c.setTelefone(Entrada.leiaString("Digite o Telefone do cliente: "));
                 cliente.salvar(c);
 
+//Opção 7 (Listar clientes)
             } else if (opcao == 7) {
                 cliente.recuperaTodos();
 
+//Opção 8 (Excluir cliente)
             } else if (opcao == 8) {
                 int id = Entrada.leiaInt("Digite o ID do cliente que deseja excluir: ");
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 cliente.excluir(clienteTemporario);
 
+//Opção 9 (Editar cliente)
             } else if (opcao == 9) {
                 int id = Entrada.leiaInt("Digite o ID do Cliente que deseja editar: ");
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 cliente.editar(clienteTemporario);
 
+//Opção 10 (Recuperar um cliente)
             } else if (opcao == 10) {
                 int id = Entrada.leiaInt("Digite o ID do Cliente que deseja recuperar: ");
                 System.out.println("IMPRIMINDO CLIENTE RECUPERADO...");
                 Cliente clienteTemporario = cliente.recuperarUm(id);
                 clienteTemporario.imprimirAtributos();
 
+//Opção 11 (Cadastrar compra)
             } else if (opcao == 11) {
-                Compras compra = new Compras();
+                Compras compraTemporaria = new Compras();
 
-                compra.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
-                compra.setDataCompra(Entrada.leiaString("Data da compra: "));
+                compraTemporaria.setFormaPagamento(Entrada.leiaString("Forma de pagamento: "));
+                compraTemporaria.setDataCompra(Entrada.leiaString("Data da compra: "));
 
                 int idCliente = Entrada.leiaInt("ID do cliente da compra: ");
-                Cliente clienteTemp = cliente.recuperarUm(idCliente);
-                if (clienteTemp == null) {
+                Cliente clienteTemporario = cliente.recuperarUm(idCliente);
+                if (clienteTemporario == null) {
                     System.out.println("Cliente não encontrado. Compra cancelada.");
                     continue;
                 }
-                compra.setCliente(clienteTemp);
+                compraTemporaria.setCliente(clienteTemporario);
 
                 int quantidade = Entrada.leiaInt("Quantos produtos deseja adicionar?");
                 String descricao = "";
@@ -126,52 +127,54 @@ public class MercadoOO {
 
                 for (int i = 0; i < quantidade; i++) {
                     int idProduto = Entrada.leiaInt("ID do produto " + (i + 1) + ": ");
-                    Produto produtoTemp = produto.recuperarUm(idProduto);
-                    if (produtoTemp == null) {
+                    Produto produtoTemporario = produto.recuperarUm(idProduto);
+                    if (produtoTemporario == null) {
                         System.out.println("Produto com ID " + idProduto + " não encontrado.");
-                        i--; // Tenta de novo esse item
+                        i--;
                         continue;
                     }
 
-                    int qtde = Entrada.leiaInt("Quantidade de " + produtoTemp.getNome() + ": ");
-                    double valorItem = produtoTemp.getPreco() * qtde;
+                    int qtde = Entrada.leiaInt("Quantidade de " + produtoTemporario.getNome() + ": ");
+                    double valorItem = produtoTemporario.getPreco() * qtde;
 
-                    descricao += produtoTemp.getNome() + " x" + qtde
-                            + " (R$ " + produtoTemp.getPreco() + " cada)\n";
+                    descricao += produtoTemporario.getNome() + " x" + qtde
+                            + " (R$ " + produtoTemporario.getPreco() + " cada)\n";
                     valorTotal += valorItem;
                 }
 
-                compra.setDescricaoCompra(descricao);
-                compra.setValorTotal(valorTotal);
-                compras.salvar(compra);
+                compraTemporaria.setDescricaoCompra(descricao);
+                compraTemporaria.setValorTotal(valorTotal);
+                compras.salvar(compraTemporaria);
 
                 System.out.println("Compra cadastrada com sucesso!");
 
+//Opção 12 (Listar compras)
             } else if (opcao == 12) {
                 compras.recuperaTodos();
 
+//Opção 13 (Excluir compra)
             } else if (opcao == 13) {
                 int id = Entrada.leiaInt("Digite o ID da compra que deseja excluir: ");
-                Compras compraTemp = compras.recuperarUm(id);
-                if (compraTemp != null) {
-                    compras.excluir(compraTemp);
+                Compras compraTemporaria = compras.recuperarUm(id);
+                if (compraTemporaria != null) {
+                    compras.excluir(compraTemporaria);
                     System.out.println("Compra excluída com sucesso!");
                 } else {
                     System.out.println("Compra não encontrada.");
                 }
 
+//Opção 14 (Editar compra)                
             } else if (opcao == 14) {
                 int id = Entrada.leiaInt("Digite o ID da compra que deseja editar: ");
-                Compras compraTemp = compras.recuperarUm(id);
+                Compras compraTemporaria = compras.recuperarUm(id);
 
-                if (compraTemp != null) {
-                    Cliente clienteTemp = null;
+                if (compraTemporaria != null) {
                     int idCliente = Entrada.leiaInt("Digite o ID do cliente associado à compra: ");
-                    clienteTemp = cliente.recuperarUm(idCliente);
+                    Cliente clienteTemporario = cliente.recuperarUm(idCliente);
 
-                    if (clienteTemp != null) {
-                        compraTemp.setCliente(clienteTemp);
-                        compras.editar(compraTemp);
+                    if (clienteTemporario != null) {
+                        compraTemporaria.setCliente(clienteTemporario);
+                        compras.editar(compraTemporaria);
                     } else {
                         System.out.println("Cliente não encontrado.");
                     }
@@ -180,21 +183,19 @@ public class MercadoOO {
                     System.out.println("Compra não encontrada.");
                 }
 
+//Opção 15 (Recuperar uma compra)                
             } else if (opcao == 15) {
                 int id = Entrada.leiaInt("Digite o ID da compra que deseja recuperar: ");
-                Compras compraTemp = compras.recuperarUm(id);
-                if (compraTemp != null) {
+                Compras compraTemporaria = compras.recuperarUm(id);
+                if (compraTemporaria != null) {
                     System.out.println("### COMPRA RECUPERADA ###");
-                    compraTemp.imprimirAtributos();
+                    compraTemporaria.imprimirAtributos();
                 } else {
                     System.out.println("Compra não encontrada.");
                 }
             }
-
         }
 
-        System.exit(
-                0);
+        System.exit(0);
     }
-
 }

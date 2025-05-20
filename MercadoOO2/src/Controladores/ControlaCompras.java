@@ -17,12 +17,14 @@ public class ControlaCompras {
     ArrayList<Compras> compras = new ArrayList();
     int codigo = 1;
 
+//Salvar
     public void salvar(Compras c) {
         c.setId(codigo);
         compras.add(c);
         codigo++;
     }
 
+//Recuperar todos
     public void recuperaTodos() {
         if (compras.isEmpty()) {
             System.out.println("Nenhuma compra cadastrada.");
@@ -35,16 +37,17 @@ public class ControlaCompras {
 
             System.out.println("-------------------------------");
             System.out.println("ID da Compra: " + c.getId());
-            System.out.println("Cliente: " + (c.getCliente() != null ? c.getCliente().getNome() : "Não informado"));
+            System.out.println("Cliente: " + c.getCliente().getNome());
             System.out.println("Data da Compra: " + c.getDataCompra());
             System.out.println("Forma de Pagamento: " + c.getFormaPagamento());
             System.out.println("Produtos:");
             System.out.println(c.getDescricaoCompra());
-            System.out.printf("Valor Total: R$ %.2f%n", c.getValorTotal());
+            System.out.printf("Valor Total: R$", c.getValorTotal());
             System.out.println("-------------------------------\n");
         }
     }
 
+//Recuperar um
     public Compras recuperarUm(int id) {
         for (int i = 0; i < compras.size(); i++) {
             Compras c = compras.get(i);
@@ -55,10 +58,12 @@ public class ControlaCompras {
         return null;
     }
 
+//Excluir
     public void excluir(Compras c) {
         compras.remove(c);
     }
 
+//Editar
     public void editar(Compras compra) {
         String novaFormaPgto = Entrada.leiaString("Forma de pagamento atual: " + compra.getFormaPagamento() + "\nNova forma de pagamento: ");
         String novaData = Entrada.leiaString("Data atual: " + compra.getDataCompra() + "\nNova data da compra: ");
@@ -74,7 +79,7 @@ public class ControlaCompras {
         compra.setFormaPagamento(novaFormaPgto);
         compra.setDataCompra(novaData);
 
-        System.out.println("Informações da compra atualizadas (produtos não foram alterados).");
+        System.out.println("Informações da compra atualizadas.");
     }
 
 
